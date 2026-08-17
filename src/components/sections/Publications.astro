@@ -1,0 +1,109 @@
+---
+import Kicker from '../Kicker.astro';
+import Icon from '../Icon.astro';
+import { SITE } from '../../data/site';
+import { PUBLICACIONES } from '../../data/publicaciones';
+
+const posts = PUBLICACIONES;
+---
+
+{posts.length > 0 && (
+  <section id="publicaciones" class="sec sec--page">
+    <div class="sec__in">
+      <Kicker>Publicaciones</Kicker>
+      <div class="pb__head">
+        <h2 class="h2" style="max-width:640px">Notas para quien decide.</h2>
+        <a href={SITE.linkedin} class="pb__follow" target="_blank" rel="noopener">
+          Seguir en LinkedIn <Icon name="arrowUpRight" size={17} />
+        </a>
+      </div>
+
+      <ol class="pb__list">
+        {posts.map((p, i) => (
+          <li class="pb__item">
+            <a href={p.url} class="pb__link" target="_blank" rel="noopener">
+              <span class="pb__n" aria-hidden="true">{String(i + 1).padStart(2, '0')}</span>
+              <span class="pb__body">
+                <span class="pb__tag">{p.tag}</span>
+                <span class="pb__t">{p.title}</span>
+                <span class="pb__x">{p.excerpt}</span>
+              </span>
+              <span class="pb__meta">{p.meta}</span>
+            </a>
+          </li>
+        ))}
+      </ol>
+    </div>
+  </section>
+)}
+
+<style>
+  .pb__head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-end;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .pb__follow {
+    font: 700 15px/1 var(--font-ui);
+    color: var(--text-context);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .pb__list {
+    margin: 56px 0 0;
+    padding: 0;
+    list-style: none;
+    border-top: 1px solid var(--border-subtle);
+  }
+  .pb__link {
+    display: grid;
+    grid-template-columns: 64px 1fr auto;
+    gap: 28px;
+    align-items: start;
+    padding: 32px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    text-decoration: none;
+    transition: background .2s ease;
+  }
+  .pb__link:hover { background: var(--neutral-50); }
+  .pb__n { font: 800 22px/1 var(--font-display); color: var(--gold-500); padding-top: 4px; }
+  .pb__body { display: block; }
+  .pb__tag {
+    display: block;
+    font: 700 12px/1 var(--font-ui);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-context);
+  }
+  .pb__t {
+    display: block;
+    font: 700 24px/1.3 var(--font-display);
+    color: var(--navy-900);
+    margin: 10px 0 8px;
+    max-width: 720px;
+  }
+  .pb__x {
+    display: block;
+    font: 400 16px/1.6 var(--font-serif);
+    color: var(--text-body);
+    max-width: 720px;
+  }
+  .pb__meta {
+    font: 500 13.5px/1 var(--font-ui);
+    color: var(--text-secondary);
+    white-space: nowrap;
+    padding-top: 4px;
+  }
+
+  @media (max-width: 720px) {
+    .pb__list { margin-top: 40px; }
+    .pb__link { grid-template-columns: 1fr; gap: 12px; padding: 26px 0; }
+    .pb__n { display: none; }
+    .pb__t { font-size: 20px; }
+  }
+</style>

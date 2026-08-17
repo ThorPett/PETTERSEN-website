@@ -1,0 +1,159 @@
+/* ===========================================================================
+   PETTERSEN Design System — Typography tokens (typography_system v0.3)
+   ---------------------------------------------------------------------------
+   Barlow structures titles/UI/tables. Source Serif 4 carries long-form
+   document reading. Type is functional, never decorative.
+   Web/UI scale is px-based (Barlow); slide & doc tokens mirror the brand pt
+   guidance for reference and for the slide kit.
+   =========================================================================== */
+
+:root {
+  /* ---- Web / UI type scale (Barlow) ----------------------------------- */
+  --text-display: 56px;  /* ui.display — hero, landing                     */
+  --text-h1:      40px;  /* page title                                     */
+  --text-h2:      30px;  /* section                                        */
+  --text-h3:      22px;  /* subsection                                     */
+  --text-lg:      18px;  /* lead / large body                              */
+  --text-base:    16px;  /* interface body                                 */
+  --text-sm:      14px;  /* secondary text                                 */
+  --text-xs:      12px;  /* metadata, captions                             */
+  --text-label:   11px;  /* labels, badges, nav (uppercase + tracking)     */
+
+  /* ---- Font weights --------------------------------------------------- */
+  --weight-light:    300;
+  --weight-regular:  400;
+  --weight-medium:   500;
+  --weight-semibold: 600;
+  --weight-bold:     700;
+  --weight-extrabold:800;
+  --weight-black:    900;
+
+  /* ---- Line heights --------------------------------------------------- */
+  --leading-tight:   1.05;  /* slide titles                                */
+  --leading-snug:    1.2;   /* subtitles, captions                         */
+  --leading-heading: 1.15;  /* UI headings                                 */
+  --leading-normal:  1.5;   /* UI body                                     */
+  --leading-relaxed: 1.7;   /* long-form document body (serif)             */
+
+  /* ---- Letter spacing ------------------------------------------------- */
+  --tracking-tight:   -0.01em;
+  --tracking-normal:  0;
+  --tracking-label:   0.08em;   /* uppercase labels                        */
+  --tracking-wordmark:0.1em;    /* PETTERSEN wordmark (0.06–0.12em)         */
+
+  /* ---- Wordmark spec -------------------------------------------------- */
+  --wordmark-weight:   900;
+  --wordmark-tracking: 0.1em;
+
+  /* ---- Slide type scale (1280×720 px-fixed canvas) ------------------- */
+  --slide-display:    84px;   /* portada title                            */
+  --slide-big-num:  240px;   /* dato — single dominant figure            */
+  --slide-statement:  52px;  /* cierre — closing statement               */
+  --slide-concept:    44px;  /* texto-2col — concept affirmation heading  */
+  --slide-h1:         64px;  /* apertura affirmation                     */
+  --slide-h2:         40px;  /* main slide title (light bg)              */
+  --slide-h2-sm:      36px;  /* compact section title                    */
+  --slide-h3:         38px;  /* subsection title                         */
+  --slide-h4:         28px;  /* column head, card title                  */
+  --slide-lead:       24px;  /* lede / subtitle serif                    */
+  --slide-body:       19px;  /* body text (serif or sans)                */
+  --slide-body-sm:    17px;  /* secondary body                           */
+  --slide-caption:    15px;  /* source / footer meta                     */
+  --slide-kicker:     18px;  /* uppercase kicker                         */
+  --slide-label:      11px;  /* uppercase label, badge                   */
+}
+
+/* ---- Reusable typographic primitives -------------------------------- */
+@layer pds.utilities {
+
+.pds-wordmark {
+  font-family: var(--font-display);
+  font-weight: var(--wordmark-weight);
+  letter-spacing: var(--wordmark-tracking);
+  text-transform: uppercase;
+}
+
+.pds-label {
+  font-family: var(--font-ui);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-label);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+}
+
+.pds-kicker {
+  font-family: var(--font-ui);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-xs);
+  letter-spacing: var(--tracking-label);
+  text-transform: uppercase;
+  color: var(--accent-context);
+}
+
+/* ---- Typographic utility classes (full scale) ----------------------- */
+.pds-display {
+  font-family: var(--font-display);
+  font-weight: var(--weight-extrabold);
+  font-size: var(--text-display);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.pds-h1 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-h1);
+  line-height: var(--leading-heading);
+  letter-spacing: var(--tracking-tight);
+}
+
+.pds-h2 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-h2);
+  line-height: var(--leading-heading);
+}
+
+.pds-h3 {
+  font-family: var(--font-display);
+  font-weight: var(--weight-bold);
+  font-size: var(--text-h3);
+  line-height: var(--leading-heading);
+}
+
+.pds-lead {
+  font-family: var(--font-ui);
+  font-size: var(--text-lg);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+}
+
+.pds-body {
+  font-family: var(--font-ui);
+  font-size: var(--text-base);
+  line-height: var(--leading-normal);
+  color: var(--text-body);
+}
+
+.pds-body-serif {
+  font-family: var(--font-body);
+  font-size: var(--text-base);
+  line-height: var(--leading-relaxed);
+  color: var(--text-body);
+}
+
+.pds-caption {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  line-height: var(--leading-snug);
+  color: var(--text-secondary);
+}
+
+.pds-meta {
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
+}
+
+} /* end @layer pds.utilities */

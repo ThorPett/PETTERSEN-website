@@ -1,0 +1,103 @@
+---
+import { SITE, NAV_FOOTER } from '../data/site';
+
+interface Props { isHome?: boolean }
+const { isHome = false } = Astro.props;
+
+const href = (id: string) => (isHome ? `#${id}` : `/#${id}`);
+const year = new Date().getFullYear();
+---
+
+<footer class="ft">
+  <div class="ft__in">
+    <div>
+      <img src="/assets/wordmark-blanco.svg" alt="PETTERSEN" class="ft__mark" width="150" height="24" />
+      <p class="ft__claim">
+        Gobierno, riesgo y educación ejecutiva para directorios y alta gerencia de LATAM.
+      </p>
+    </div>
+
+    <div>
+      <div class="ft__h">Navegación</div>
+      <nav class="ft__col" aria-label="Pie de página">
+        {NAV_FOOTER.map((n) => (
+          <a href={href(n.id)} class="ft__link">{n.label}</a>
+        ))}
+      </nav>
+    </div>
+
+    <div>
+      <div class="ft__h">Contacto</div>
+      <div class="ft__col">
+        <a href={`mailto:${SITE.email}`} class="ft__link">{SITE.email}</a>
+        <a href={SITE.cal} class="ft__link" target="_blank" rel="noopener">Agendar conversación</a>
+        <a href={SITE.linkedin} class="ft__link" target="_blank" rel="noopener">LinkedIn</a>
+        <a href={SITE.ibee} class="ft__link" target="_blank" rel="noopener">IBEE · ibee.education</a>
+        <span class="ft__link ft__link--static">Buenos Aires, Argentina</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="ft__legal">
+    <div class="ft__legal-in">
+      <span>© {year} Mario A. Pettersen. Todos los derechos reservados.</span>
+      <span>Sin ruido. Con criterio.</span>
+    </div>
+  </div>
+</footer>
+
+<style>
+  .ft {
+    background: var(--navy-950);
+    border-top: 1px solid rgba(255, 255, 255, .08);
+  }
+  .ft__in {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 64px;
+    display: grid;
+    gap: 40px;
+    grid-template-columns: 1.4fr 1fr 1fr;
+    align-items: start;
+  }
+  .ft__mark { height: 24px; width: auto; display: block; margin-bottom: 18px; }
+  .ft__claim {
+    font: 400 15px/1.6 var(--font-serif);
+    color: rgba(255, 255, 255, .6);
+    max-width: 300px;
+    margin: 0;
+  }
+  .ft__h {
+    font: 700 12px/1 var(--font-ui);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .45);
+    margin-bottom: 16px;
+  }
+  .ft__col { display: flex; flex-direction: column; gap: 11px; }
+  .ft__link {
+    font: 500 15px/1 var(--font-ui);
+    color: rgba(255, 255, 255, .74);
+    text-decoration: none;
+  }
+  .ft__link:hover:not(.ft__link--static) { color: var(--gold-500); }
+
+  .ft__legal { border-top: 1px solid rgba(255, 255, 255, .08); }
+  .ft__legal-in {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 22px 64px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    align-items: center;
+    justify-content: space-between;
+    font: 400 13.5px/1 var(--font-ui);
+    color: rgba(255, 255, 255, .42);
+  }
+
+  @media (max-width: 720px) {
+    .ft__in { grid-template-columns: 1fr; padding: 48px 24px; }
+    .ft__legal-in { padding: 20px 24px; }
+  }
+</style>

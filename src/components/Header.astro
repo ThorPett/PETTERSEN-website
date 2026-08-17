@@ -1,0 +1,129 @@
+---
+/**
+ * Header fijo. Transparente sobre el hero, navy sólido al hacer scroll
+ * (lo activa /js/site.js; sin JS queda navy sólido, que es legible igual).
+ *
+ * Las anclas se resuelven según la página: en la home son locales (#enfoque);
+ * desde cualquier ruta interna —el blog cuando exista— apuntan a /#enfoque.
+ * Sin esto, el header deja de funcionar apenas el sitio deja de ser una
+ * sola página.
+ */
+import { NAV } from '../data/site';
+import Icon from './Icon.astro';
+
+interface Props { isHome?: boolean }
+const { isHome = false } = Astro.props;
+
+const href = (id: string) => (isHome ? `#${id}` : `/#${id}`);
+---
+
+<header class="hd" data-header>
+  <div class="hd__in">
+    <a href={isHome ? '#top' : '/'} class="hd__brand" aria-label="PETTERSEN — inicio">
+      <img src="/assets/wordmark-blanco.svg" alt="PETTERSEN" width="140" height="22" />
+    </a>
+
+    <nav class="hd__nav" aria-label="Principal">
+      {NAV.map((n) => (
+        <a href={href(n.id)} class="hd__link">{n.label}</a>
+      ))}
+      <a href={href('contacto')} class="btn btn--gold btn--sm hd__cta">Agendar conversación</a>
+    </nav>
+
+    <button
+      class="hd__burger"
+      type="button"
+      aria-label="Abrir menú"
+      aria-expanded="false"
+      aria-controls="hd-mobile"
+      data-burger
+    >
+      <span data-burger-open><Icon name="menu" size={26} /></span>
+      <span data-burger-close hidden><Icon name="close" size={26} /></span>
+    </button>
+  </div>
+
+  <div class="hd__mobile" id="hd-mobile" hidden data-mobile-menu>
+    {NAV.map((n) => (
+      <a href={href(n.id)} class="hd__mlink">{n.label}</a>
+    ))}
+    <a href={href('contacto')} class="btn btn--gold hd__mcta">Agendar conversación</a>
+  </div>
+</header>
+
+<style>
+  .hd {
+    position: fixed;
+    inset: 0 0 auto 0;
+    z-index: 50;
+    background: rgba(7, 18, 40, .92);
+    backdrop-filter: saturate(140%) blur(10px);
+    border-bottom: 1px solid rgba(255, 255, 255, .10);
+    transition: background .3s ease, border-color .3s ease;
+  }
+  /* Sólo se vuelve transparente si el JS confirmó que estamos arriba.
+     El estado por defecto es el sólido: sin JS el header sigue legible. */
+  .hd[data-top='1'] {
+    background: transparent;
+    backdrop-filter: none;
+    border-bottom-color: transparent;
+  }
+
+  .hd__in {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 16px 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+  }
+
+  .hd__brand { display: flex; align-items: center; }
+  .hd__brand img { height: 22px; width: auto; display: block; }
+
+  .hd__nav { display: flex; align-items: center; gap: 30px; }
+
+  .hd__link {
+    font: 600 14.5px/1 var(--font-ui);
+    letter-spacing: .01em;
+    color: rgba(255, 255, 255, .78);
+    text-decoration: none;
+    transition: color .2s ease;
+    white-space: nowrap;
+  }
+  .hd__link:hover { color: var(--gold-500); }
+
+  .hd__burger {
+    display: none;
+    background: none;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    padding: 6px;
+  }
+
+  .hd__mobile {
+    background: rgba(7, 18, 40, .98);
+    border-top: 1px solid rgba(255, 255, 255, .10);
+    padding: 12px 24px 24px;
+    flex-direction: column;
+    gap: 4px;
+  }
+  .hd__mobile:not([hidden]) { display: flex; }
+
+  .hd__mlink {
+    font: 600 16px/1 var(--font-ui);
+    color: rgba(255, 255, 255, .85);
+    text-decoration: none;
+    padding: 14px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, .08);
+  }
+  .hd__mcta { margin-top: 14px; }
+
+  @media (max-width: 1024px) {
+    .hd__in { padding: 14px 24px; }
+    .hd__nav { display: none; }
+    .hd__burger { display: flex; }
+  }
+</style>

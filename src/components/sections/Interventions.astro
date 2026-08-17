@@ -1,0 +1,113 @@
+---
+import Kicker from '../Kicker.astro';
+import { INTERVENCIONES } from '../../data/intervenciones';
+
+/**
+ * Casos anonimizados. Trayectoria es identidad; esto es evidencia.
+ * No se renderiza si no hay casos cargados: index.astro ya lo condiciona,
+ * la guarda de acá es defensa en profundidad.
+ */
+const casos = INTERVENCIONES;
+
+const CAMPOS: [keyof typeof casos[number], string][] = [
+  ['presion', 'Presión'],
+  ['decision', 'Decisión a sostener'],
+  ['intervencion', 'Intervención'],
+  ['consecuencia', 'Consecuencia'],
+];
+---
+
+{casos.length > 0 && (
+  <section id="intervenciones" class="sec sec--page">
+    <div class="sec__in">
+      <Kicker>Intervenciones</Kicker>
+      <h2 class="h2" style="max-width:760px">Estructuras que había que rediseñar bajo presión.</h2>
+      <p class="lead">
+        Casos anonimizados. El sector y la escala alcanzan para ubicar el problema; el nombre de
+        la organización no agrega criterio.
+      </p>
+
+      <div class="iv__list">
+        {casos.map((c, i) => (
+          <article class="iv__card">
+            <header class="iv__head">
+              <span class="iv__n">{String(i + 1).padStart(2, '0')}</span>
+              <div>
+                <h3 class="iv__sector">{c.sector}</h3>
+                {c.marco && <span class="iv__marco">{c.marco}</span>}
+              </div>
+            </header>
+            <dl class="iv__dl">
+              {CAMPOS.map(([k, label]) => (
+                <div class="iv__row">
+                  <dt class="iv__dt">{label}</dt>
+                  <dd class="iv__dd">{c[k]}</dd>
+                </div>
+              ))}
+            </dl>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<style>
+  .iv__list { display: grid; gap: 24px; margin-top: 60px; }
+  .iv__card {
+    background: var(--neutral-50);
+    border: 1px solid var(--border-subtle);
+    border-left: 4px solid var(--gold-500);
+    border-radius: 10px;
+    padding: 36px 38px;
+  }
+  .iv__head {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    padding-bottom: 20px;
+    margin-bottom: 22px;
+    border-bottom: 1px solid var(--border-subtle);
+  }
+  .iv__n {
+    font: 800 22px/1 var(--font-display);
+    color: var(--gold-500);
+    flex: none;
+  }
+  .iv__sector {
+    font: 700 22px/1.25 var(--font-display);
+    color: var(--navy-900);
+    margin: 0;
+  }
+  .iv__marco {
+    display: inline-block;
+    margin-top: 8px;
+    font: 600 12.5px/1 var(--font-ui);
+    letter-spacing: .02em;
+    color: var(--text-context);
+    background: var(--teal-50);
+    border: 1px solid var(--teal-100);
+    border-radius: 5px;
+    padding: 6px 10px;
+  }
+
+  .iv__dl { margin: 0; display: grid; gap: 16px; }
+  .iv__row { display: grid; grid-template-columns: 190px 1fr; gap: 20px; align-items: baseline; }
+  .iv__dt {
+    font: 700 12px/1.4 var(--font-ui);
+    letter-spacing: .14em;
+    text-transform: uppercase;
+    color: var(--text-context);
+  }
+  .iv__dd {
+    font: 400 16px/1.62 var(--font-serif);
+    color: var(--text-body);
+    margin: 0;
+  }
+
+  @media (max-width: 720px) {
+    .iv__list { margin-top: 44px; }
+    .iv__card { padding: 28px; }
+    .iv__row { grid-template-columns: 1fr; gap: 6px; }
+  }
+</style>

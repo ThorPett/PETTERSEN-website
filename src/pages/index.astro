@@ -1,0 +1,31 @@
+---
+import Base from '../layouts/Base.astro';
+import Hero from '../components/sections/Hero.astro';
+import Approach from '../components/sections/Approach.astro';
+import Authority from '../components/sections/Authority.astro';
+import Services from '../components/sections/Services.astro';
+import Interventions from '../components/sections/Interventions.astro';
+import Method from '../components/sections/Method.astro';
+import Publications from '../components/sections/Publications.astro';
+import Contact from '../components/sections/Contact.astro';
+
+/**
+ * Orden de secciones (decisión 2026-08-17):
+ * Intervenciones va entre Servicios y Método, no dentro de Trayectoria.
+ * Trayectoria es identidad; mezclarle proyectos la convierte en un CV, y el
+ * CV se lee como postulación mientras el caso se lee como evidencia.
+ *
+ * Interventions y Publications se auto-suprimen si no tienen datos cargados.
+ */
+---
+
+<Base isHome path="/">
+  <Hero />
+  <Approach />
+  <Authority />
+  <Services />
+  <Interventions />
+  <Method />
+  <Publications />
+  <Contact />
+</Base>

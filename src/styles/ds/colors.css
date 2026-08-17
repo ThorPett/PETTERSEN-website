@@ -1,0 +1,121 @@
+/* ===========================================================================
+   PETTERSEN Design System — Color tokens (color_system v0.2)
+   ---------------------------------------------------------------------------
+   Principle: "Navy estructura. Oro enfatiza. Teal contextualiza.
+   Cyan tecnifica. Los neutros sostienen lectura."
+   Three layers (always consume the highest one you can):
+     1. Brand scales      --navy-900, --gold-500 …
+     2. Semantic aliases  --bg-institutional, --text-on-dark, --accent …
+     3. Component tokens   --btn-primary-bg …  (defined where components live)
+   RISK colors are a SEPARATE, inviolable system (the MAP/PETTERSEN semáforo).
+   They are never substituted by brand colors and never used as decoration.
+   Oro (#F4A700) is NEVER a warning — the warning is amber #D97706.
+   =========================================================================== */
+:root {
+  /* ---- Mother colors -------------------------------------------------- */
+  --navy:  #0E1E40;   /* Navy Pettersen — institutional background        */
+  --gold:  #F4A700;   /* Oro Pettersen — primary accent / emphasis        */
+  --teal:  #00B3AF;   /* Teal Pettersen — references, context, info       */
+  --cyan:  #0090D9;   /* Cyan tecnológico — IT, AI, cyber, data           */
+  --white: #FFFFFF;
+  --ink:   #0D1218;   /* Negro técnico — never pure #000000               */
+  /* ---- Navy scale ----------------------------------------------------- */
+  --navy-950: #071228;  /* ultra-dark background, overlays, separators     */
+  --navy-900: #0E1E40;  /* primary institutional background                */
+  --navy-800: #1A2E55;  /* internal surfaces on dark                       */
+  --navy-700: #1A3060;  /* dark cards, secondary blocks, hover-on-navy     */
+  --navy-100: #EEF2F8;  /* very light institutional background             */
+  /* ---- Gold scale ----------------------------------------------------- */
+  --gold-900: #6A4900;  /* gold-derived text on light                      */
+  --gold-700: #C98A00;  /* hover, active border, controlled print          */
+  --gold-500: #F4A700;  /* official primary accent                         */
+  --gold-100: #FFF4D6;  /* soft institutional fill (NOT semantic warning)  */
+  /* ---- Teal scale ----------------------------------------------------- */
+  --teal-800: #00736F;  /* teal TEXT on light — WCAG AA 5.70:1 (use for text) */
+  --teal-700: #008A87;  /* fills, borders, large text only (4.21:1 — NOT body) */
+  --teal-500: #00B3AF;  /* official secondary accent (decoration/fills, not text) */
+  --teal-100: #E0F6F5;  /* soft fill for normative / contextual blocks     */
+  --teal-50:  #F0FBFA;  /* very soft fill — callouts, document backgrounds */
+  /* ---- Cyan scale ----------------------------------------------------- */
+  --cyan-700: #0070AA;  /* technical text on light — WCAG AA 5.39:1         */
+  --cyan-500: #0090D9;  /* technological accent (icons/UI 3:1, not body text) */
+  --cyan-100: #E0F2FF;  /* soft fill for technical diagrams                */
+  /* ---- Neutrals ------------------------------------------------------- */
+  --neutral-0:   #FFFFFF;
+  --neutral-50:  #F7F9FC;  /* soft background                              */
+  --neutral-100: #EEF2F8;  /* light institutional surface                  */
+  --neutral-200: #E2E8F0;  /* lines, borders, dividers                     */
+  --neutral-300: #CBD5E1;  /* secondary borders                            */
+  --neutral-400: #A0AEC0;  /* auxiliary / disabled text                    */
+  --neutral-500: #718096;  /* non-text only: large text, disabled, placeholders (4.02:1 — NOT body) */
+  --neutral-600: #5A6678;  /* secondary TEXT on light — WCAG AA 5.82:1     */
+  --neutral-700: #4A5568;  /* body text on light                           */
+  --neutral-900: #1A202C;  /* institutional ink                            */
+  --neutral-950: #0D1218;  /* technical black                              */
+  /* ---- Semantic UI states (interface, NOT risk) ----------------------- */
+  --success:      #16A34A;
+  --info:         #0090D9;
+  --warning:      #D97706;   /* the real warning — NOT gold                */
+  --error:        #DC2626;
+  --neutral-state:#718096;
+  --success-soft: #DCFCE7;
+  --info-soft:    #E0F2FF;
+  --warning-soft: #FEF3C7;
+  --error-soft:   #FEE2E2;
+  --neutral-soft: #F7F9FC;
+  /* ---- MAP/PETTERSEN risk semáforo (inviolable 5-level scale) --------- */
+  --risk-very-low: #16A34A;   /* MB — Muy bajo */
+  --risk-low:      #65A30D;   /* B  — Bajo     */
+  --risk-medium:   #D97706;   /* M  — Medio    */
+  --risk-high:     #EA580C;   /* A  — Alto     */
+  --risk-critical: #DC2626;   /* C  — Crítico  */
+  --risk-text:     #0D1218;   /* recommended text on any risk cell        */
+  /* ---- Dashboard / chart series (non-semantic, stable order) ---------- */
+  --chart-1: #0090D9;
+  --chart-2: #00B3AF;
+  --chart-3: #F4A700;
+  --chart-4: #1A3060;
+  --chart-5: #718096;
+  --chart-6: #C98A00;
+  /* =====================================================================
+     SEMANTIC ALIASES — prefer these in components & layouts
+     ===================================================================== */
+  /* Backgrounds & surfaces */
+  --bg-institutional: var(--navy-900);  /* dominant dark background         */
+  --bg-technical:     var(--ink);       /* deep technical / cyber surfaces  */
+  --bg-page:          var(--white);     /* light document / web background  */
+  --bg-soft:          var(--neutral-50);
+  --surface-card:     var(--white);
+  --surface-card-dark:var(--navy-700);
+  --surface-raised:   var(--neutral-100);
+  /* Text */
+  --text-on-dark:       var(--white);
+  --text-on-dark-muted: rgba(255,255,255,0.72);
+  --text-primary:       var(--ink);     /* main text on light              */
+  --text-body:          var(--neutral-700);
+  --text-secondary:     var(--neutral-600);  /* AA-safe secondary text on light (5.82:1) */
+  --text-disabled:      var(--neutral-400);
+  --text-accent:        var(--gold-500);     /* decoration only - NOT text on light */
+  --text-accent-ink:    var(--gold-900);     /* gold TEXT on light - AA 8.18:1     */
+  --text-link:          var(--navy-900);
+  --text-link-tech:     var(--cyan-700);     /* AA 5.39:1                          */
+  --text-context:       var(--teal-800);     /* teal TEXT on light - AA 5.70:1     */
+  /* Lines & borders */
+  --border-subtle:  var(--neutral-200);
+  --border-strong:  var(--neutral-300);
+  --border-on-dark: rgba(255,255,255,0.16);
+  /* Accents (decoration/fills - for TEXT on light use --text-context / --text-accent-ink) */
+  --accent:        var(--gold-500);   /* emphasis, rules, numerals         */
+  --accent-hover:  var(--gold-700);
+  --accent-context:var(--teal-500);   /* references, info context (fills/rules) */
+  --accent-tech:   var(--cyan-500);   /* technology / AI / cyber / data (icons) */
+  /* Interaction states */
+  --focus-ring:    var(--teal-700);   /* WCAG 2.4.11 AA: 4.21:1 vs white (teal-500 failed at 2.60) */
+  --hover-dark:    var(--navy-700);
+  --hover-light:   var(--neutral-100);
+  --active:        var(--gold-700);
+  --selection:     var(--teal-100);
+  --disabled-bg:   var(--neutral-200);
+  --disabled-text: var(--neutral-400);
+}
+::selection { background: var(--selection); }

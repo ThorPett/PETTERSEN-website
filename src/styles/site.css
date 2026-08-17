@@ -1,0 +1,156 @@
+/* ===========================================================================
+   PETTERSEN Website — hoja global.
+   Tokens del design system + layout del sitio. Sin JS para responsive:
+   todo por media queries reales, porque el sitio se pre-renderiza estático.
+   Breakpoints espejo de los hooks del template original:
+     mobile  <= 720px
+     tablet  <= 1024px
+   =========================================================================== */
+
+@import './ds/fonts.css';
+@import './ds/colors.css';
+@import './ds/typography.css';
+@import './ds/spacing.css';
+@import './ds/motion.css';
+
+/* --- Reset mínimo ---------------------------------------------------- */
+*,
+*::before,
+*::after { box-sizing: border-box; }
+
+html {
+  scroll-behavior: smooth;
+  /* El header fijo mide 72px: evita que las anclas queden tapadas. */
+  scroll-padding-top: 72px;
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: .01ms !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--bg-page);
+  color: var(--text-primary);
+  font-family: var(--font-ui);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg { max-width: 100%; }
+a { color: inherit; }
+
+:focus-visible {
+  outline: 3px solid var(--focus-ring);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Salto al contenido — WCAG 2.4.1 */
+.skip {
+  position: absolute;
+  left: -9999px;
+  top: 0;
+  z-index: 100;
+  background: var(--gold-500);
+  color: var(--navy-900);
+  font: 700 15px/1 var(--font-ui);
+  padding: 14px 20px;
+  border-radius: 0 0 6px 0;
+  text-decoration: none;
+}
+.skip:focus { left: 0; }
+
+/* --- Shell de sección ------------------------------------------------- */
+.sec { position: relative; }
+.sec__in {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding: 128px 64px;
+}
+@media (max-width: 1024px) { .sec__in { padding: 96px 48px; } }
+@media (max-width:  720px) { .sec__in { padding: 72px 24px; } }
+
+.sec--navy   { background: var(--navy-900); border-bottom: 1px solid rgba(255,255,255,.08); }
+.sec--navy950{ background: var(--navy-950); }
+.sec--soft   { background: var(--neutral-50); }
+.sec--page   { background: var(--bg-page); }
+
+/* --- Kicker: regla dorada + label ------------------------------------ */
+.kicker {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 22px;
+}
+.kicker__rule {
+  width: 40px;
+  height: 3px;
+  background: var(--gold-500);
+  flex: none;
+}
+.kicker__txt {
+  font: 700 13px/1 var(--font-ui);
+  letter-spacing: .18em;
+  text-transform: uppercase;
+  color: var(--text-context);
+}
+.kicker--dark .kicker__txt { color: var(--gold-500); }
+
+/* --- Tipografía de sección ------------------------------------------- */
+.h2 {
+  font: 800 42px/1.1 var(--font-display);
+  letter-spacing: -.015em;
+  color: var(--navy-900);
+  margin: 0;
+}
+.h2--dark { color: #fff; }
+@media (max-width: 720px) { .h2 { font-size: 30px; } }
+
+.lead {
+  font: 400 20px/1.6 var(--font-serif);
+  color: var(--text-body);
+  margin: 20px 0 0;
+  max-width: 680px;
+}
+.lead--dark { color: rgba(255,255,255,.78); }
+@media (max-width: 720px) { .lead { font-size: 18px; } }
+
+/* --- Botones ---------------------------------------------------------- */
+.btn {
+  font: 700 16px/1 var(--font-ui);
+  padding: 16px 28px;
+  border-radius: 6px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: background .2s ease, border-color .2s ease, color .2s ease;
+}
+.btn--gold { color: var(--navy-900); background: var(--gold-500); }
+.btn--gold:hover { background: var(--gold-700); }
+.btn--ghost {
+  color: #fff;
+  background: transparent;
+  border-color: rgba(255,255,255,.28);
+}
+.btn--ghost:hover { background: rgba(255,255,255,.06); border-color: rgba(255,255,255,.45); }
+.btn--sm { font-size: 14.5px; padding: 11px 20px; }
+
+/* --- Utilidad --------------------------------------------------------- */
+.vh {
+  position: absolute;
+  width: 1px; height: 1px;
+  padding: 0; margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}

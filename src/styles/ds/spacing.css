@@ -1,0 +1,67 @@
+/* ===========================================================================
+   PETTERSEN Design System — Spacing, radius, shadow, layout tokens
+   ---------------------------------------------------------------------------
+   The brand is structural and sober: restrained radii, quiet borders,
+   shadows used sparingly (never on the brand mark). 8px base rhythm.
+   =========================================================================== */
+
+:root {
+  /* ---- Spacing scale (8px base) --------------------------------------- */
+  --space-0:  0;
+  --space-1:  4px;
+  --space-2:  8px;
+  --space-3:  12px;
+  --space-4:  16px;
+  --space-5:  24px;
+  --space-6:  32px;
+  --space-7:  48px;
+  --space-8:  64px;
+  --space-9:  96px;
+  --space-10: 128px;
+
+  /* ---- Corner radius -------------------------------------------------- */
+  --radius-none: 0;
+  --radius-xs:   3px;   /* badges, chips                                   */
+  --radius-sm:   6px;   /* buttons, inputs                                 */
+  --radius-md:   10px;  /* cards                                           */
+  --radius-lg:   16px;  /* large panels                                    */
+  --radius-pill: 999px; /* pills, avatars                                  */
+
+  /* ---- Borders -------------------------------------------------------- */
+  --border-width: 1px;
+  --border-width-strong: 2px;
+  --rule-accent: 4px;   /* gold institutional rule thickness               */
+
+  /* ---- Elevation (quiet, cool-tinted) --------------------------------- */
+  --shadow-xs: 0 1px 2px rgba(14, 30, 64, 0.06);
+  --shadow-sm: 0 1px 3px rgba(14, 30, 64, 0.08), 0 1px 2px rgba(14, 30, 64, 0.06);
+  --shadow-md: 0 4px 12px rgba(14, 30, 64, 0.10);
+  --shadow-lg: 0 12px 32px rgba(14, 30, 64, 0.14);
+  --focus-shadow: 0 0 0 3px rgba(0, 138, 135, 0.40);  /* teal-700 (#008A87) — alineado con --focus-ring */
+
+  /* ---- Layout --------------------------------------------------------- */
+  --container-max: 1200px;
+  --container-wide: 1360px;
+  --content-measure: 68ch;   /* comfortable long-form reading width        */
+  --slide-w: 1280px;
+  --slide-h: 720px;
+
+  /* ---- Slide layout (1280×720 canvas) --------------------------------- */
+  --slide-pad-x:    88px;   /* standard horizontal padding                 */
+  --slide-pad-y:    72px;   /* standard vertical padding                   */
+  --slide-pad-x-sm: 64px;   /* tight horizontal (split panels)             */
+  --slide-rule-w:   56px;   /* gold rule width                             */
+  --slide-rule-h:   5px;    /* gold rule height                            */
+  --slide-foot-b:   44px;   /* footer isotipo bottom                       */
+  --slide-foot-h:   20px;   /* footer isotipo height                       */
+
+  /* ---- Z-index scale -------------------------------------------------- */
+  --z-base:     0;    /* @kind other */
+  --z-raised:   10;   /* @kind other */ /* cards, popovers relative to page  */
+  --z-dropdown: 100;  /* @kind other */ /* dropdowns, select menus           */
+  --z-sticky:   200;  /* @kind other */ /* sticky headers, nav               */
+  --z-overlay:  300;  /* @kind other */ /* dimming overlays                  */
+  --z-modal:    400;  /* @kind other */ /* modals, dialogs                   */
+  --z-toast:    500;  /* @kind other */ /* toast notifications               */
+  --z-tooltip:  600;  /* @kind other */ /* tooltips — always on top          */
+}

@@ -1,0 +1,143 @@
+---
+import Kicker from '../Kicker.astro';
+
+/**
+ * Trayectoria = identidad. No lleva casos: los casos viven en Intervenciones.
+ * El «ENTJ» del template salió por decisión de Mario (2026-08-17): MBTI no
+ * tiene validez psicométrica aceptada y junto a ISO 31000 degrada la señal.
+ * El reemplazo sale de MAPMarca (boilerplate institucional, «seis países»).
+ */
+const stats: [string, string][] = [
+  ['20+', 'años en gobierno, riesgo y cumplimiento'],
+  ['6', 'países con intervenciones en instituciones financieras y corporaciones'],
+  ['IBEE', 'fundador · educación ejecutiva (LATAM)'],
+];
+
+const marcos = [
+  'ISO 31000', 'ISO 22301', 'ISO 27001', 'ISO 27701', 'ISO 42001',
+  'COBIT 2019', 'COSO ERM 2017', 'NIST CSF', 'TOGAF', 'ITIL 4',
+  'DORA', 'SOC 2', 'PMBOK', 'SAFe',
+];
+---
+
+<section id="autoridad" class="sec sec--navy au">
+  <div class="au__in">
+    <div class="au__portrait">
+      <span class="au__corner au__corner--tl" aria-hidden="true"></span>
+      <img
+        src="/assets/mario-pettersen.png"
+        alt="Mario A. Pettersen"
+        width="1065"
+        height="1100"
+        loading="lazy"
+        decoding="async"
+      />
+      <span class="au__corner au__corner--br" aria-hidden="true"></span>
+    </div>
+
+    <div>
+      <Kicker onDark>Trayectoria</Kicker>
+      <h2 class="h2 h2--dark">Mario A. Pettersen</h2>
+      <p class="lead lead--dark" style="max-width:600px">
+        Consultor senior y educador ejecutivo en Buenos Aires. Trabajo con directorios y alta
+        gerencia de LATAM en PMO, riesgos no financieros, continuidad de negocio, ciberseguridad,
+        privacidad, gobierno de TI y transformación digital.
+      </p>
+
+      <div class="au__stats">
+        {stats.map(([n, l]) => (
+          <div class="au__stat">
+            <div class="au__n">{n}</div>
+            <div class="au__l">{l}</div>
+          </div>
+        ))}
+      </div>
+
+      <div class="au__h">Marcos de referencia</div>
+      <ul class="au__marcos">
+        {marcos.map((m) => <li class="au__marco">{m}</li>)}
+      </ul>
+    </div>
+  </div>
+</section>
+
+<style>
+  .au__in {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 128px 64px;
+    display: grid;
+    gap: 72px;
+    grid-template-columns: .82fr 1fr;
+    align-items: center;
+  }
+
+  .au__portrait { position: relative; }
+  .au__portrait img {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 10px;
+    filter: grayscale(.12);
+  }
+  .au__corner { position: absolute; width: 64px; height: 64px; }
+  .au__corner--tl {
+    left: -14px; top: -14px;
+    border-top: 4px solid var(--gold-500);
+    border-left: 4px solid var(--gold-500);
+  }
+  .au__corner--br {
+    right: -14px; bottom: -14px;
+    border-bottom: 4px solid var(--gold-500);
+    border-right: 4px solid var(--gold-500);
+  }
+
+  .au__stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 40px;
+    margin: 36px 0;
+    padding-top: 28px;
+    border-top: 1px solid rgba(255, 255, 255, .12);
+  }
+  .au__stat { min-width: 120px; }
+  .au__n { font: 800 34px/1 var(--font-display); color: var(--gold-500); }
+  .au__l {
+    font: 400 14px/1.45 var(--font-ui);
+    color: rgba(255, 255, 255, .62);
+    margin-top: 8px;
+    max-width: 200px;
+  }
+
+  .au__h {
+    font: 700 12.5px/1 var(--font-ui);
+    letter-spacing: .16em;
+    text-transform: uppercase;
+    color: rgba(255, 255, 255, .5);
+    margin-bottom: 16px;
+  }
+  .au__marcos {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 9px;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .au__marco {
+    font: 600 13.5px/1 var(--font-ui);
+    color: rgba(255, 255, 255, .86);
+    border: 1px solid rgba(255, 255, 255, .18);
+    border-radius: 5px;
+    padding: 8px 12px;
+  }
+
+  @media (max-width: 1024px) {
+    .au__in { grid-template-columns: 1fr; gap: 48px; padding: 96px 48px; }
+    .au__portrait { max-width: 320px; justify-self: start; }
+  }
+  @media (max-width: 720px) {
+    .au__in { padding: 72px 24px; }
+    .au__stats { gap: 24px; }
+  }
+</style>

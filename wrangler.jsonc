@@ -1,0 +1,22 @@
+{
+  // Cloudflare Workers con Static Assets. Sin script propio: el Worker sólo
+  // sirve los archivos de dist/. Los requests a assets estáticos no cuentan
+  // contra el límite de 100.000 requests/día del plan gratuito.
+  //
+  // Los dominios personalizados NO se declaran acá: se adjuntan desde el
+  // panel (Worker → Settings → Domains & Routes → Add Custom Domain), y
+  // Cloudflare crea el registro DNS. Antes de hacerlo hay que anotar el
+  // contenido real de los registros A actuales: detrás del proxy está la IP
+  // de origen de Hostinger, que es el failover documentado.
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "pettersen-website",
+  "compatibility_date": "2026-08-17",
+  "assets": {
+    "directory": "./dist",
+    "not_found_handling": "404-page",
+    "html_handling": "auto-trailing-slash"
+  },
+  "observability": {
+    "enabled": true
+  }
+}

@@ -1,0 +1,85 @@
+---
+import Kicker from '../Kicker.astro';
+import Icon from '../Icon.astro';
+
+const principios = [
+  {
+    icon: 'scale',
+    title: 'Criterio antes que volumen',
+    body: 'El directorio no necesita más datos. Necesita la lectura correcta: qué decide, qué riesgo asume y qué evidencia lo respalda.',
+  },
+  {
+    icon: 'shield',
+    title: 'Riesgo que se puede defender',
+    body: 'Cada exposición se ordena con marco, criticidad y consecuencia. Trazable ante auditoría, regulador y comité. Nunca color sin código.',
+  },
+  {
+    icon: 'layers',
+    title: 'Estructura sobre ruido',
+    body: 'Gobierno, controles y tecnología articulados en un solo sistema legible. Lo que no ordena, compara, prioriza o decide, se elimina.',
+  },
+] as const;
+---
+
+<section id="enfoque" class="sec sec--page">
+  <div class="sec__in">
+    <Kicker>Enfoque</Kicker>
+    <h2 class="h2" style="max-width:760px">Reduzco la carga cognitiva de quien decide.</h2>
+    <p class="lead">
+      Un comité no falla por falta de información, sino por falta de criterio para jerarquizarla.
+      Mi trabajo es ese ordenamiento.
+    </p>
+
+    <div class="ap__grid">
+      {principios.map((p) => (
+        <article class="ap__card">
+          <div class="ap__icon"><Icon name={p.icon} size={26} /></div>
+          <h3 class="ap__t">{p.title}</h3>
+          <p class="ap__b">{p.body}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .ap__grid {
+    display: grid;
+    gap: 28px;
+    margin-top: 64px;
+    grid-template-columns: repeat(3, 1fr);
+  }
+  .ap__card {
+    background: var(--neutral-50);
+    border: 1px solid var(--border-subtle);
+    border-radius: 10px;
+    padding: 34px;
+  }
+  .ap__icon {
+    width: 52px;
+    height: 52px;
+    border-radius: 8px;
+    background: var(--navy-900);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--gold-500);
+    margin-bottom: 22px;
+  }
+  .ap__t {
+    font: 700 21px/1.25 var(--font-display);
+    color: var(--navy-900);
+    margin: 0 0 12px;
+  }
+  .ap__b {
+    font: 400 16px/1.62 var(--font-serif);
+    color: var(--text-body);
+    margin: 0;
+  }
+
+  @media (max-width: 1024px) { .ap__grid { grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 720px) {
+    .ap__grid { grid-template-columns: 1fr; gap: 20px; margin-top: 48px; }
+    .ap__card { padding: 28px; }
+  }
+</style>
