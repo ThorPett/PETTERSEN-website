@@ -20,7 +20,11 @@ const href = (id: string) => (isHome ? `#${id}` : `/#${id}`);
 <header class="hd" data-header>
   <div class="hd__in">
     <a href={isHome ? '#top' : '/'} class="hd__brand" aria-label="PETTERSEN — inicio">
-      <img src="/assets/wordmark-blanco.svg" alt="PETTERSEN" width="140" height="22" />
+      {/* PNG, no SVG. El wordmark SVG del design system es un <text> con
+          font-family Barlow, no un trazado vectorizado: cargado por <img> el
+          SVG queda aislado y no ve las @font-face de la página, así que el
+          navegador cae a Arial. El PNG conserva el Barlow 900 real. */}
+      <img src="/assets/wordmark-blanco.png" alt="PETTERSEN" width="137" height="22" />
     </a>
 
     <nav class="hd__nav" aria-label="Principal">

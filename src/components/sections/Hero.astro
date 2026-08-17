@@ -12,10 +12,9 @@ import Icon from '../Icon.astro';
       <span>Gobierno · Riesgo · Educación ejecutiva</span>
     </div>
 
-    <h1 class="hero__h1">
-      Convierto gobierno, riesgo y tecnología en
-      <span class="hero__em">decisiones defendibles</span> de directorio.
-    </h1>
+    {/* En una sola línea a propósito: Astro colapsa el salto de línea entre
+        texto y elemento inline, y "en" quedaba pegado a "decisiones". */}
+    <h1 class="hero__h1">Convierto gobierno, riesgo y tecnología en <span class="hero__em">decisiones defendibles</span> de directorio.</h1>
 
     <p class="hero__lead">
       Acompaño a directorios, comités y alta gerencia a ordenar lo complejo:
