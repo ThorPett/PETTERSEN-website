@@ -1,4 +1,6 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+// Desde Astro 7, `z` ya no se importa de 'astro:content'.
+import { z } from 'astro/zod';
 import { glob } from 'astro/loaders';
 
 /**
