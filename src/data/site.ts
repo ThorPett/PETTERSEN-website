@@ -11,12 +11,12 @@ export const SITE = {
   marca: 'PETTERSEN',
   titulo: 'PETTERSEN · Gobierno, riesgo y educación ejecutiva',
   descripcion:
-    'Mario A. Pettersen asesora directorios y comités de riesgos de organizaciones reguladas en LATAM sobre diseño y rediseño de estructuras de gobierno bajo escrutinio regulatorio.',
+    'Mario A. Pettersen asesora directorios y comités de riesgos en LATAM sobre diseño y rediseño de estructuras de gobierno bajo escrutinio regulatorio.',
   locale: 'es_AR',
   lang: 'es',
 
   /* Contacto y agenda -------------------------------------------------- */
-  email: 'consultas@pettersen.com.ar',
+  email: 'contacto@pettersen.com.ar',
   linkedin: 'https://www.linkedin.com/in/mariopettersen',
   ibee: 'https://ibee.education',
   /** Evento principal de Cal. Enlace directo, sin embed. */
