@@ -12,15 +12,15 @@ const casos = INTERVENCIONES;
 const CAMPOS: [keyof typeof casos[number], string][] = [
   ['presion', 'Presión'],
   ['decision', 'Decisión a sostener'],
-  ['intervencion', 'Intervención'],
+  ['intervencion', 'Qué se hizo'],
   ['consecuencia', 'Consecuencia'],
 ];
 ---
 
 {casos.length > 0 && (
-  <section id="intervenciones" class="sec sec--page">
+  <section id="casos" class="sec sec--page">
     <div class="sec__in">
-      <Kicker>Intervenciones</Kicker>
+      <Kicker>Casos</Kicker>
       <h2 class="h2" style="max-width:760px">Estructuras que había que rediseñar bajo presión.</h2>
       <p class="lead">
         Casos anonimizados. El sector y la escala alcanzan para ubicar el problema; el nombre de

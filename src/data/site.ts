@@ -32,7 +32,7 @@ export type NavItem = { id: string; label: string };
  * Navegación
  *
  * Se computa en build a partir de qué secciones realmente se renderizan.
- * Intervenciones y Publicaciones dependen de datos que todavía no existen;
+ * Casos y Publicaciones dependen de datos que todavía no existen;
  * un ítem de menú que apunta a un ancla inexistente es un enlace roto, así
  * que salen solos hasta que haya contenido.
  * ---------------------------------------------------------------------- */
@@ -45,7 +45,7 @@ export const NAV: NavItem[] = [
   { id: 'enfoque', label: 'Enfoque' },
   { id: 'autoridad', label: 'Trayectoria' },
   { id: 'servicios', label: 'Servicios' },
-  ...(HAY_INTERVENCIONES ? [{ id: 'intervenciones', label: 'Intervenciones' }] : []),
+  ...(HAY_INTERVENCIONES ? [{ id: 'casos', label: 'Casos' }] : []),
   { id: 'contacto', label: 'Contacto' },
 ];
 
@@ -57,7 +57,7 @@ export const NAV_FOOTER: NavItem[] = [
   { id: 'enfoque', label: 'Enfoque' },
   { id: 'autoridad', label: 'Trayectoria' },
   { id: 'servicios', label: 'Servicios' },
-  ...(HAY_INTERVENCIONES ? [{ id: 'intervenciones', label: 'Intervenciones' }] : []),
+  ...(HAY_INTERVENCIONES ? [{ id: 'casos', label: 'Casos' }] : []),
   { id: 'matriz', label: 'Método' },
   ...(HAY_PUBLICACIONES ? [{ id: 'publicaciones', label: 'Publicaciones' }] : []),
   { id: 'contacto', label: 'Contacto' },
