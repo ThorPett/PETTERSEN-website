@@ -2,19 +2,21 @@
 import Kicker from '../Kicker.astro';
 
 /**
- * Método — matriz 5×5 con el semáforo MAP/PETTERSEN.
+ * Método — criterio de decisión por nivel de riesgo.
  *
- * Versión estática: la matriz del design system es interactiva (React), acá
- * se renderiza completa en HTML y la tabla de riesgos queda siempre visible.
- * El mensaje —«así se ve una exposición ordenada»— no depende de un clic, y
- * el sitio no envía JavaScript de framework.
+ * Decisión 2026-08-19: la sección mostraba una matriz con riesgos de
+ * demostración del template. Un ejemplo de riesgos ajenos exhibe formato de
+ * salida, no método, y contradice la regla del proyecto de no publicar
+ * contenido fabricado. La matriz queda como objeto visual del semáforo y la
+ * tabla pasa a declarar qué se decide en cada nivel, dónde escala y quién
+ * firma, que es lo que un director evalúa.
  *
  * El semáforo y la grilla de niveles son los del DS (components/risk.md).
  * INVIOLABLE: no alterar colores ni bandas. El color nunca decide solo:
- * cada celda y cada riesgo llevan código de nivel.
+ * cada celda lleva código de nivel.
  *
- * PENDIENTE DE MARIO: los seis riesgos son los de demostración del template.
- * Revisarlos antes de publicar.
+ * PENDIENTE DE MARIO: validar el criterio de la tabla. Es su método, no un
+ * default: cambiar cualquier fila cambia lo que el sitio declara.
  */
 
 const GRID_MAP = [
@@ -34,35 +36,35 @@ type Lvl = keyof typeof LVL_LABEL;
 const levelAt = (prob: number, impact: number): Lvl =>
   GRID_MAP[5 - prob][impact - 1] as Lvl;
 
-const riesgos = [
-  { id: 'R1', name: 'Ciberataque a sistemas críticos', prob: 4, impact: 5, decision: 'Tratar: mitigación prioritaria, plan a 90 días' },
-  { id: 'R2', name: 'Fuga de datos personales', prob: 4, impact: 4, decision: 'Tratar: control inmediato y notificación' },
-  { id: 'R3', name: 'Indisponibilidad de proveedor TI', prob: 3, impact: 4, decision: 'Transferir: cláusula SLA y contingencia' },
-  { id: 'R4', name: 'Incumplimiento regulatorio (DORA)', prob: 2, impact: 5, decision: 'Tratar: cierre de brechas con evidencia' },
-  { id: 'R5', name: 'Obsolescencia de arquitectura', prob: 3, impact: 3, decision: 'Monitorear: hoja de ruta de modernización' },
-  { id: 'R6', name: 'Rotación de talento clave', prob: 3, impact: 2, decision: 'Monitorear: plan de sucesión' },
+/** Criterio por nivel: qué se decide, dónde escala y quién firma. */
+const criterio: { lvl: Lvl; decision: string; escala: string; firma: string }[] = [
+  { lvl: 'C',  decision: 'Tratamiento inmediato con plan y fecha de cierre', escala: 'Directorio, en la sesión siguiente', firma: 'Directorio' },
+  { lvl: 'A',  decision: 'Tratamiento con plan, responsable y plazo',        escala: 'Comité de riesgos',                  firma: 'Comité de riesgos' },
+  { lvl: 'M',  decision: 'Tratamiento o transferencia según costo del control', escala: 'Alta gerencia',                   firma: 'Responsable del riesgo' },
+  { lvl: 'B',  decision: 'Monitoreo con umbral de revisión definido',        escala: 'Informe periódico',                  firma: 'Responsable del riesgo' },
+  { lvl: 'MB', decision: 'Aceptación registrada',                            escala: 'Sin escalamiento',                   firma: 'Responsable del riesgo' },
 ];
 
 const filas = [5, 4, 3, 2, 1];
 const cols = [1, 2, 3, 4, 5];
-const at = (p: number, i: number) => riesgos.filter((r) => r.prob === p && r.impact === i);
 ---
 
 <section id="matriz" class="sec sec--navy950">
   <div class="sec__in">
     <div style="max-width:720px">
       <Kicker onDark>Método</Kicker>
-      <h2 class="h2 h2--dark">Así se ve una exposición ordenada.</h2>
+      <h2 class="h2 h2--dark">El nivel de un riesgo fija quién decide y con qué plazo.</h2>
       <p class="lead lead--dark">
-        Probabilidad por impacto, con semáforo de riesgo. El color nunca decide solo:
-        cada riesgo lleva código de nivel y una decisión asociada.
+        Probabilidad por impacto, con semáforo de riesgo. Cada nivel llega con una decisión
+        asociada, un punto de escalamiento y alguien que firma. El color nunca decide solo:
+        cada celda lleva su código.
       </p>
     </div>
 
     <figure class="mx">
       <figcaption class="mx__cap">
-        <span class="mx__title">Exposición de riesgos · vista de comité</span>
-        <span class="mx__sub">6 riesgos priorizados · código de nivel por riesgo</span>
+        <span class="mx__title">Probabilidad por impacto</span>
+        <span class="mx__sub">Código de nivel en cada celda</span>
       </figcaption>
 
       <div class="mx__wrap">
@@ -73,19 +75,10 @@ const at = (p: number, i: number) => riesgos.filter((r) => r.prob === p && r.imp
               <div class="mx__ylab">{p}</div>
               {cols.map((i) => {
                 const lvl = levelAt(p, i);
-                const rs = at(p, i);
                 return (
                   <div class={`mx__cell mx__cell--${lvl}`}>
                     <span class="mx__code">{lvl}</span>
-                    {rs.length > 0 && (
-                      <span class="mx__chips">
-                        {rs.map((r) => <b class="mx__chip">{r.id}</b>)}
-                      </span>
-                    )}
-                    <span class="vh">
-                      Probabilidad {p}, impacto {i}. Nivel {LVL_LABEL[lvl]}.
-                      {rs.length > 0 && ` Riesgos: ${rs.map((r) => r.id).join(', ')}.`}
-                    </span>
+                    <span class="vh">Probabilidad {p}, impacto {i}. Nivel {LVL_LABEL[lvl]}.</span>
                   </div>
                 );
               })}
@@ -109,32 +102,27 @@ const at = (p: number, i: number) => riesgos.filter((r) => r.prob === p && r.imp
 
     <div class="mx__tablewrap">
       <table class="mx__table">
-        <caption class="vh">Riesgos priorizados con nivel y decisión asociada</caption>
+        <caption class="vh">Criterio de decisión por nivel de riesgo</caption>
         <thead>
           <tr>
-            <th scope="col">Cód.</th>
-            <th scope="col">Riesgo</th>
-            <th scope="col">P × I</th>
             <th scope="col">Nivel</th>
             <th scope="col">Decisión</th>
+            <th scope="col">Escalamiento</th>
+            <th scope="col">Firma</th>
           </tr>
         </thead>
         <tbody>
-          {riesgos.map((r) => {
-            const lvl = levelAt(r.prob, r.impact);
-            return (
-              <tr>
-                <td class="mx__td-id">{r.id}</td>
-                <td>{r.name}</td>
-                <td class="mx__td-pi">{r.prob} × {r.impact}</td>
-                <td>
-                  <span class={`mx__badge mx__cell--${lvl}`}>{lvl}</span>
-                  <span class="mx__badge-l">{LVL_LABEL[lvl]}</span>
-                </td>
-                <td>{r.decision}</td>
-              </tr>
-            );
-          })}
+          {criterio.map((c) => (
+            <tr>
+              <td>
+                <span class={`mx__badge mx__cell--${c.lvl}`}>{c.lvl}</span>
+                <span class="mx__badge-l">{LVL_LABEL[c.lvl]}</span>
+              </td>
+              <td>{c.decision}</td>
+              <td>{c.escala}</td>
+              <td>{c.firma}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>
@@ -142,7 +130,7 @@ const at = (p: number, i: number) => riesgos.filter((r) => r.prob === p && r.imp
 </section>
 
 <style>
-  /* Semáforo MAP/PETTERSEN — inviolable, los fondos no se tocan.
+  /* Semáforo MAP/PETTERSEN, inviolable: los fondos no se tocan.
      El color del código sí se elige por contraste medido contra cada fondo:
      el código es el mecanismo accesible («el color nunca decide solo»), así
      que tiene que leerse. Ratios verificados (WCAG 2.2, texto normal ≥4.5):
@@ -217,15 +205,6 @@ const at = (p: number, i: number) => riesgos.filter((r) => r.prob === p && r.imp
     gap: 8px;
   }
   .mx__code { font: 800 13px/1 var(--font-ui); }
-  .mx__chips { display: flex; gap: 5px; }
-  /* Chip del riesgo: #fff sobre #0D1218 = 18,80:1 en cualquier celda. */
-  .mx__chip {
-    font: 800 13px/1 var(--font-ui);
-    background: var(--risk-text);
-    color: #fff;
-    border-radius: 4px;
-    padding: 5px 7px;
-  }
 
   .mx__legend {
     display: flex;
@@ -269,8 +248,6 @@ const at = (p: number, i: number) => riesgos.filter((r) => r.prob === p && r.imp
     border-bottom: 1px solid rgba(255, 255, 255, .10);
     vertical-align: top;
   }
-  .mx__td-id { font-weight: 800; color: var(--gold-500); white-space: nowrap; }
-  .mx__td-pi { white-space: nowrap; font-variant-numeric: tabular-nums; }
   .mx__badge {
     display: inline-block;
     font: 800 12px/1 var(--font-ui);
@@ -284,7 +261,6 @@ const at = (p: number, i: number) => riesgos.filter((r) => r.prob === p && r.imp
     .mx { padding: 20px; margin-top: 40px; }
     .mx__cell { aspect-ratio: 1 / .8; flex-direction: column; gap: 4px; }
     .mx__code { font-size: 11px; }
-    .mx__chip { font-size: 11px; padding: 4px 5px; }
     .mx__grid { grid-template-columns: 20px repeat(5, 1fr); gap: 4px; }
   }
 </style>

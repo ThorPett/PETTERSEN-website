@@ -1,6 +1,7 @@
 ---
 import Kicker from '../Kicker.astro';
 import Icon from '../Icon.astro';
+import { SITE } from '../../data/site';
 
 const servicios = [
   {
@@ -18,14 +19,15 @@ const servicios = [
   {
     n: '03', icon: 'layers',
     title: 'Gobierno de TI y dirección de programas',
-    body: 'Dirección de programas y cartera de proyectos con PMBOK 7.ª ed. y SAFe. Arquitectura de la función tecnológica con TOGAF Standard, 10th Edition, COBIT 2019 e ITIL 4, con criterio de inversión y de corte de iniciativas.',
-    tags: ['PMBOK 7.ª ed.', 'TOGAF', 'COBIT 2019'],
+    body: 'Dirección de programas y cartera de proyectos con PMBOK y SAFe. Arquitectura de la función tecnológica con TOGAF, COBIT e ITIL, con criterio de inversión y de corte de iniciativas.',
+    tags: ['PMBOK', 'TOGAF', 'COBIT'],
   },
   {
     n: '04', icon: 'cap',
     title: 'Formación ejecutiva',
     body: 'Programas para organizaciones, desde el directorio hasta la alta gerencia, a través de IBEE. Riesgo, gobierno y tecnología explicados para decidir, no para administrar.',
     tags: ['IBEE', 'Directorios', 'C-level'],
+    href: SITE.ibee, hrefLabel: 'ibee.education',
   },
 ] as const;
 ---
@@ -47,6 +49,9 @@ const servicios = [
           <ul class="sv__tags">
             {s.tags.map((t) => <li class="sv__tag">{t}</li>)}
           </ul>
+          {'href' in s && (
+            <a class="sv__link" href={s.href} target="_blank" rel="noopener">{s.hrefLabel}</a>
+          )}
         </article>
       ))}
     </div>
@@ -98,6 +103,16 @@ const servicios = [
   .sv__t { font: 700 22px/1.25 var(--font-display); color: var(--navy-900); margin: 0 0 12px; }
   .sv__b { font: 400 16px/1.62 var(--font-serif); color: var(--text-body); margin: 0 0 22px; }
   .sv__tags { display: flex; flex-wrap: wrap; gap: 8px; list-style: none; margin: 0; padding: 0; }
+  .sv__link {
+    display: inline-block;
+    margin-top: 18px;
+    font: 600 14px/1 var(--font-ui);
+    color: var(--navy-900);
+    text-decoration: none;
+    border-bottom: 2px solid var(--gold-500);
+    padding-bottom: 3px;
+  }
+  .sv__link:hover { color: var(--gold-600, var(--gold-500)); }
   .sv__tag {
     font: 600 12.5px/1 var(--font-ui);
     letter-spacing: .02em;

@@ -35,7 +35,8 @@ export interface Caso {
   decision: string;
   intervencion: string;
   consecuencia: string;
-  /** Marco normativo dominante. Nombre + versión. */
+  /** Marco dominante, sin edición ni versión: en el sitio la versión
+   *  se deprecia sola y obliga a mantenimiento (decisión 2026-08-19). */
   marco?: string;
 }
 
@@ -48,10 +49,10 @@ export const CASOS: Caso[] = [
     decision:
       'Un órgano central con autoridad para rechazar demanda de gerencias con poder político propio y para frenar iniciativas ya comprometidas con el negocio. La alternativa disponible era sumar capacidad de ejecución sobre el mismo circuito de entrada, que reproduce la cola con más costo y sin cambiar quién decide.',
     intervencion:
-      'Rediseño de la arquitectura de la función de Tecnología con TOGAF Standard, 10th Edition: capacidades, flujos de decisión y dependencias entre dominios definidos antes de tocar el circuito de demanda. Sobre esa arquitectura se fijaron criterios de priorización con pesos explícitos, matriz RACI y definiciones de proceso con COBIT 2019, y evaluación de riesgo de cada solicitud con ISO 31000:2018.',
+      'Rediseño de la arquitectura de la función de Tecnología con TOGAF: capacidades, flujos de decisión y dependencias entre dominios definidos antes de tocar el circuito de demanda. Sobre esa arquitectura se fijaron criterios de priorización con pesos explícitos, matriz RACI y definiciones de proceso con COBIT, y evaluación de riesgo de cada solicitud con ISO 31000.',
     consecuencia:
       '70 % de la demanda reordenada bajo los nuevos criterios, 40 % de reducción de la cartera de pendientes y ciclo de solicitud a decisión de 120 a 30 días, sobre un programa de 2 años.',
-    marco: 'TOGAF Standard, 10th Edition',
+    marco: 'TOGAF',
   },
   {
     sector:
@@ -64,6 +65,6 @@ export const CASOS: Caso[] = [
       'Programa plurianual de rediseño operativo sobre una red de sucursales con operación autónoma y dependencia tecnológica local. La administración se consolidó en una unidad central única, la logística pasó a operar como equipo propio sobre depósitos físicos de distribución, y la fuerza de ventas quedó desacoplada de la sucursal como lugar de trabajo. Los controles sobre la información se tomaron de la familia ISO/IEC 27000 como lineamiento, sin objetivo de certificación.',
     consecuencia:
       '80 % de la operación administrativa y comercial trabajando de forma remota. La presencia física quedó reducida a los depósitos de distribución.',
-    marco: 'Familia ISO/IEC 27000 (lineamiento)',
+    marco: 'ISO/IEC 27000 (lineamiento)',
   },
 ];
