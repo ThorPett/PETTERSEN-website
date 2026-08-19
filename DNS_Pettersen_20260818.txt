@@ -1,0 +1,60 @@
+;;
+;; Domain:     pettersen.com.ar.
+;; Exported:   2026-08-18 22:52:38
+;;
+;; This file is intended for use for informational and archival
+;; purposes ONLY and MUST be edited before use on a production
+;; DNS server.  In particular, you must:
+;;   -- update the SOA record with the correct authoritative name server
+;;   -- update the SOA record with the contact e-mail address information
+;;   -- update the NS record(s) with the authoritative name servers for this domain.
+;;
+;; For further information, please consult the BIND documentation
+;; located on the following website:
+;;
+;; http://www.isc.org/
+;;
+;; And RFC 1035:
+;;
+;; http://www.ietf.org/rfc/rfc1035.txt
+;;
+;; Please note that we do NOT offer technical support for any use
+;; of this zone data, the BIND name server, or any other third-party
+;; DNS software.
+;;
+;; Use at your own risk.
+;; SOA Record
+pettersen.com.ar	3600	IN	SOA	bill.ns.cloudflare.com. dns.cloudflare.com. 2053876015 10000 2400 604800 3600
+
+;; NS Records
+pettersen.com.ar.	86400	IN	NS	bill.ns.cloudflare.com.
+pettersen.com.ar.	86400	IN	NS	paris.ns.cloudflare.com.
+
+;; A Records
+api.pettersen.com.ar.	1	IN	A	100.114.97.42 ; Kairos API cf_tags=cf-proxied:false
+chat.pettersen.com.ar.	1	IN	A	100.114.97.42 ; Kairos Chat cf_tags=cf-proxied:false
+ia.pettersen.com.ar.	1	IN	A	100.114.97.42 ; Oracle VPS Free tier - Kairos cf_tags=cf-proxied:false
+lab.pettersen.com.ar.	1	IN	A	100.114.97.42 ; Kairos Laboratorio cf_tags=cf-proxied:false
+portainer.pettersen.com.ar.	1	IN	A	100.114.97.42 ; Kairos Portainer cf_tags=cf-proxied:false
+
+;; CNAME Records
+calendar.pettersen.com.ar.	1	IN	CNAME	ghs.google.com. ; cf_tags=cf-proxied:true
+docs.pettersen.com.ar.	1	IN	CNAME	ghs.google.com. ; cf_tags=cf-proxied:true
+mail.pettersen.com.ar.	1	IN	CNAME	ghs.google.com. ; cf_tags=cf-proxied:true
+
+;; MX Records
+pettersen.com.ar.	1	IN	MX	5 alt2.aspmx.l.google.com.
+pettersen.com.ar.	1	IN	MX	10 aspmx3.googlemail.com.
+pettersen.com.ar.	1	IN	MX	10 aspmx5.googlemail.com.
+pettersen.com.ar.	1	IN	MX	5 alt1.aspmx.l.google.com.
+pettersen.com.ar.	1	IN	MX	10 aspmx2.googlemail.com.
+pettersen.com.ar.	1	IN	MX	1 aspmx.l.google.com.
+pettersen.com.ar.	1	IN	MX	10 aspmx4.googlemail.com.
+
+;; TXT Records
+_dmarc.pettersen.com.ar.	3600	IN	TXT	"v=DMARC1; p=none; sp=reject; np=reject; rua=mailto:rua@dmarc.brevo.com,mailto:dmarc@pettersen.com.ar"
+google._domainkey.pettersen.com.ar.	1	IN	TXT	"v=DKIM1; k=rsa; p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCOFImlVygPckNZTYwGmg23/6JzIjmGuKgC4RnPjH2eBVcRpEelAMpdUbRs+f2nOXuLLLV3oe7qH9wqrdyb4dLfaXRMGyW/EOvTjmscbJc8YHxs50bpKBHdprsCYaAYLA0f1t3UtnvKwWybqu8WXrK9Vp7y5u394nrdHzeOcKJjwQIDAQAB"
+mail._domainkey.pettersen.com.ar.	3600	IN	TXT	"k=rsa;p=MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDeMVIzrCa3T14JsNY0IRv5/2V1/v2itlviLQBwXsa7shBD6TrBkswsFUToPyMRWC9tbR/5ey0nRBH0ZVxp+lsmTxid2Y2z+FApQ6ra2VsXfbJP3HE6wAO0YTVEJt1TmeczhEd2Jiz/fcabIISgXEdSpTYJhb0ct0VJRxcg4c8c7wIDAQAB"
+pettersen.com.ar.	1	IN	TXT	"v=spf1 include:_spf.google.com include:spf.brevo.com ~all"
+pettersen.com.ar.	1	IN	TXT	"openai-domain-verification=dv-qV9N7RYUU1o5Z4vKpaqUPEug"
+pettersen.com.ar.	3600	IN	TXT	"brevo-code:fdc34bd43937e5cc4584bbd6050f1f8c"

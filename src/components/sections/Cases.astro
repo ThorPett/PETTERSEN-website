@@ -1,13 +1,13 @@
 ---
 import Kicker from '../Kicker.astro';
-import { INTERVENCIONES } from '../../data/intervenciones';
+import { CASOS } from '../../data/casos';
 
 /**
  * Casos anonimizados. Trayectoria es identidad; esto es evidencia.
  * No se renderiza si no hay casos cargados: index.astro ya lo condiciona,
  * la guarda de acá es defensa en profundidad.
  */
-const casos = INTERVENCIONES;
+const casos = CASOS;
 
 const CAMPOS: [keyof typeof casos[number], string][] = [
   ['presion', 'Presión'],

@@ -2,7 +2,7 @@
  * Datos del sitio. Fuente única: nav, contacto, agenda, metadatos.
  * Ningún componente hardcodea una URL de contacto o de agenda.
  */
-import { INTERVENCIONES } from './intervenciones';
+import { CASOS } from './casos';
 import { PUBLICACIONES } from './publicaciones';
 
 export const SITE = {
@@ -32,12 +32,12 @@ export type NavItem = { id: string; label: string };
  * Navegación
  *
  * Se computa en build a partir de qué secciones realmente se renderizan.
- * Casos y Publicaciones dependen de datos que todavía no existen;
- * un ítem de menú que apunta a un ancla inexistente es un enlace roto, así
- * que salen solos hasta que haya contenido.
+ * Publicaciones depende de datos que todavía no existen; un ítem de menú
+ * que apunta a un ancla inexistente es un enlace roto, así que sale solo
+ * hasta que haya contenido.
  * ---------------------------------------------------------------------- */
 
-const HAY_INTERVENCIONES = INTERVENCIONES.length > 0;
+const HAY_CASOS = CASOS.length > 0;
 const HAY_PUBLICACIONES = PUBLICACIONES.length > 0;
 
 /** Header: cinco ítems más el CTA dorado. Siete a 14,5px comprimen el CTA. */
@@ -45,7 +45,7 @@ export const NAV: NavItem[] = [
   { id: 'enfoque', label: 'Enfoque' },
   { id: 'autoridad', label: 'Trayectoria' },
   { id: 'servicios', label: 'Servicios' },
-  ...(HAY_INTERVENCIONES ? [{ id: 'casos', label: 'Casos' }] : []),
+  ...(HAY_CASOS ? [{ id: 'casos', label: 'Casos' }] : []),
   { id: 'contacto', label: 'Contacto' },
 ];
 
@@ -57,7 +57,7 @@ export const NAV_FOOTER: NavItem[] = [
   { id: 'enfoque', label: 'Enfoque' },
   { id: 'autoridad', label: 'Trayectoria' },
   { id: 'servicios', label: 'Servicios' },
-  ...(HAY_INTERVENCIONES ? [{ id: 'casos', label: 'Casos' }] : []),
+  ...(HAY_CASOS ? [{ id: 'casos', label: 'Casos' }] : []),
   { id: 'matriz', label: 'Método' },
   ...(HAY_PUBLICACIONES ? [{ id: 'publicaciones', label: 'Publicaciones' }] : []),
   { id: 'contacto', label: 'Contacto' },

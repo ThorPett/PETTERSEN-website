@@ -35,12 +35,12 @@ const levelAt = (prob: number, impact: number): Lvl =>
   GRID_MAP[5 - prob][impact - 1] as Lvl;
 
 const riesgos = [
-  { id: 'R1', name: 'Ciberataque a sistemas críticos', prob: 4, impact: 5, decision: 'Tratar — mitigación prioritaria, plan a 90 días' },
-  { id: 'R2', name: 'Fuga de datos personales', prob: 4, impact: 4, decision: 'Tratar — control inmediato y notificación' },
-  { id: 'R3', name: 'Indisponibilidad de proveedor TI', prob: 3, impact: 4, decision: 'Transferir — cláusula SLA + contingencia' },
-  { id: 'R4', name: 'Incumplimiento regulatorio (DORA)', prob: 2, impact: 5, decision: 'Tratar — cierre de brechas con evidencia' },
-  { id: 'R5', name: 'Obsolescencia de arquitectura', prob: 3, impact: 3, decision: 'Monitorear — hoja de ruta de modernización' },
-  { id: 'R6', name: 'Rotación de talento clave', prob: 3, impact: 2, decision: 'Monitorear — plan de sucesión' },
+  { id: 'R1', name: 'Ciberataque a sistemas críticos', prob: 4, impact: 5, decision: 'Tratar: mitigación prioritaria, plan a 90 días' },
+  { id: 'R2', name: 'Fuga de datos personales', prob: 4, impact: 4, decision: 'Tratar: control inmediato y notificación' },
+  { id: 'R3', name: 'Indisponibilidad de proveedor TI', prob: 3, impact: 4, decision: 'Transferir: cláusula SLA y contingencia' },
+  { id: 'R4', name: 'Incumplimiento regulatorio (DORA)', prob: 2, impact: 5, decision: 'Tratar: cierre de brechas con evidencia' },
+  { id: 'R5', name: 'Obsolescencia de arquitectura', prob: 3, impact: 3, decision: 'Monitorear: hoja de ruta de modernización' },
+  { id: 'R6', name: 'Rotación de talento clave', prob: 3, impact: 2, decision: 'Monitorear: plan de sucesión' },
 ];
 
 const filas = [5, 4, 3, 2, 1];
@@ -61,7 +61,7 @@ const at = (p: number, i: number) => riesgos.filter((r) => r.prob === p && r.imp
 
     <figure class="mx">
       <figcaption class="mx__cap">
-        <span class="mx__title">Exposición de riesgos — vista de comité</span>
+        <span class="mx__title">Exposición de riesgos · vista de comité</span>
         <span class="mx__sub">6 riesgos priorizados · código de nivel por riesgo</span>
       </figcaption>
 

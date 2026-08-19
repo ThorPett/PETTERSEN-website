@@ -17,14 +17,14 @@ const servicios = [
   },
   {
     n: '03', icon: 'layers',
-    title: 'Gobierno de TI y arquitectura',
-    body: 'COBIT 2019, TOGAF e ITIL 4 para ordenar la función tecnológica. PMO, portafolio y transformación digital con criterio de inversión.',
-    tags: ['COBIT 2019', 'TOGAF', 'ITIL 4'],
+    title: 'Gobierno de TI y dirección de programas',
+    body: 'Dirección de programas y cartera de proyectos con PMBOK 7.ª ed. y SAFe. Arquitectura de la función tecnológica con TOGAF Standard, 10th Edition, COBIT 2019 e ITIL 4, con criterio de inversión y de corte de iniciativas.',
+    tags: ['PMBOK 7.ª ed.', 'TOGAF', 'COBIT 2019'],
   },
   {
     n: '04', icon: 'cap',
     title: 'Formación ejecutiva',
-    body: 'Programas para organizaciones —desde el directorio hasta la alta gerencia— a través de IBEE. Riesgo, gobierno y tecnología explicados para decidir, no para administrar.',
+    body: 'Programas para organizaciones, desde el directorio hasta la alta gerencia, a través de IBEE. Riesgo, gobierno y tecnología explicados para decidir, no para administrar.',
     tags: ['IBEE', 'Directorios', 'C-level'],
   },
 ] as const;
@@ -33,7 +33,7 @@ const servicios = [
 <section id="servicios" class="sec sec--soft">
   <div class="sec__in">
     <Kicker>Servicios</Kicker>
-    <h2 class="h2" style="max-width:720px">Cuatro frentes, un mismo criterio de decisión.</h2>
+    <h2 class="h2" style="max-width:720px">Frentes distintos, un mismo criterio de decisión.</h2>
 
     <div class="sv__grid">
       {servicios.map((s) => (
